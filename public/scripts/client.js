@@ -85,7 +85,10 @@ const tweetData = {
 $(document).ready( function () {
   renderTweets(data);
 
-  $('.new-tweet').submit( function(evt) {
+  $('.new-tweet').find('form').submit( function(evt) {
+    $.post('/tweets/', $(this).serialize(), function() {
+      // console.log('POST request sent')
+    })
     evt.preventDefault();
   })
 })
