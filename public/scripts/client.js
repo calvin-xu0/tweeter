@@ -84,6 +84,10 @@ const tweetData = {
 
 $(document).ready( function () {
   renderTweets(data);
+
+  $('.new-tweet').submit( function(evt) {
+    evt.preventDefault();
+  })
 })
 
 // const $tweet = createTweetElement(tweetData);

@@ -1,5 +1,6 @@
 header.profile {
   position: fixed;
+  z-index: 1;
   height: 400px;
   width: 100%;
   background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");

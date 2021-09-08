@@ -22,7 +22,6 @@ body {
 }
 
 main {
-  z-index: -1;
   position: relative;
   top: 400px;
   width: 70%;
