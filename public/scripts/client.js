@@ -43,15 +43,21 @@ $(document).ready( function () {
 
   const loadTweets = function() {
     $.get('/tweets', res => {
-      // console.log(res)
       renderTweets(res);
     })
   }
   loadTweets();
   
   $('.new-tweet').find('form').submit( function(evt) {
-    $.post('/tweets', $(this).serialize(), function() {
-    })
     evt.preventDefault();
+
+    const tweetLength = $(this).find('#tweet-text').val().length;
+    if (!tweetLength) {
+      window.alert('Please enter a message')
+    } else if (tweetLength > 140) {
+      window.alert('Tweet too long')
+    } else {
+      $.post('/tweets', $(this).serialize())
+    }
   })
 })
