@@ -1,5 +1,5 @@
 .new-tweet {
-  margin: auto;
+  margin: 0 auto;
   /* width: 80%; */
 }
 
@@ -15,6 +15,11 @@
   border-bottom: solid;
   margin-bottom: 1em;
   resize: none;
+  outline: 0;
+}
+
+.new-tweet form textarea:focus {
+  border-style: thick;
 }
 
 .new-tweet form div {
@@ -30,4 +35,12 @@
   border: 0;
   font-size: 75%;
   padding: 0 0.5em;
+}
+
+.new-tweet .error {
+  display: none;
+  align-items: center;
+  color: red;
+  padding: 0.5rem 0;
+  font-size: 0.75em;
 }

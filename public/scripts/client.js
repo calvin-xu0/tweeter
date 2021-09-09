@@ -52,14 +52,27 @@ $(document).ready(function() {
 
   $('.new-tweet').find('form').submit(function(evt) {
     evt.preventDefault();
+    const errorElement = $(this).next('.error');
+    errorElement.slideUp( function() {
+      $(this).empty()
+    });
 
-    const tweetLength = $(this).find('#tweet-text').val().length;
+    const textAreaElement = $(this).find('#tweet-text');
+    const tweetLength = textAreaElement.val().length;
     if (!tweetLength) {
-      window.alert('Please enter a message')
+      textAreaElement.attr('style', 'border-color: red; border-style: thin;')
+      errorElement.height('1em').then(errorElement.slideDown( function() {
+        $(this).html('<i class="fas fa-exclamation-triangle"></i> Please enter a message')
+      }))
     } else if (tweetLength > 140) {
-      window.alert('Tweet too long')
+      errorElement.height('1em').then(errorElement.slideDown( function() {
+        $(this).html('<i class="fas fa-exclamation-triangle"></i> Message too long')
+      }))
+      // window.alert('Tweet too long')
     } else {
       $.post('/tweets', $(this).serialize()).then(() => {
+        $(this).find('#tweet-text').val('');
+        $(this).find('output').val(140);
         $('#tweets').empty();
         loadTweets();
       });
