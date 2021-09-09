@@ -1,17 +1,17 @@
 /*
- * Client-side JS logic goes here
+* Client-side JS logic goes here
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
 const renderTweets = tweets =>  {
   for (const item of tweets) {
-    $('#tweets').append($(createTweetElement(item)));
+    $('#tweets').prepend(createTweetElement(item));
   }
 }
 
 const createTweetElement = data => {
-  return `
+  return $(`
   <article class="tweet">
   <header>
     <div class="header-left">
@@ -36,7 +36,7 @@ const createTweetElement = data => {
     </div>
   </footer>
 </article>
-`
+`)
 }
 
 $(document).ready( function () {
@@ -57,7 +57,9 @@ $(document).ready( function () {
     } else if (tweetLength > 140) {
       window.alert('Tweet too long')
     } else {
-      $.post('/tweets', $(this).serialize())
+      $.post('/tweets', $(this).serialize());
+      $('#tweets').empty();
+      loadTweets();
     }
   })
 })
