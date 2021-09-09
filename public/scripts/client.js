@@ -60,16 +60,17 @@ $(document).ready(function() {
     const textAreaElement = $(this).find('#tweet-text');
     const tweetLength = textAreaElement.val().length;
     if (!tweetLength) {
-      textAreaElement.attr('style', 'border-color: red; border-style: thin;')
-      errorElement.height('1em').then(errorElement.slideDown( function() {
+      textAreaElement.addClass('invalid');
+      errorElement.slideDown( function() {
         $(this).html('<i class="fas fa-exclamation-triangle"></i> Please enter a message')
-      }))
+      })
     } else if (tweetLength > 140) {
-      errorElement.height('1em').then(errorElement.slideDown( function() {
+      textAreaElement.addClass('invalid');
+      errorElement.slideDown( function() {
         $(this).html('<i class="fas fa-exclamation-triangle"></i> Message too long')
-      }))
-      // window.alert('Tweet too long')
+      })
     } else {
+      textAreaElement.removeClass('invalid');
       $.post('/tweets', $(this).serialize()).then(() => {
         $(this).find('#tweet-text').val('');
         $(this).find('output').val(140);
