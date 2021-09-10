@@ -53,7 +53,7 @@ $(document).ready(function() {
   $('.new-tweet').find('form').submit(function(evt) {
     evt.preventDefault();
     const errorElement = $(this).next('.error');
-    errorElement.slideUp( function() {
+    errorElement.slideUp( 'fast', function() {
       $(this).empty()
     });
 
@@ -61,12 +61,12 @@ $(document).ready(function() {
     const tweetLength = textAreaElement.val().length;
     if (!tweetLength) {
       textAreaElement.addClass('invalid');
-      errorElement.slideDown( function() {
+      errorElement.slideDown( 'fast', function() {
         $(this).html('<i class="fas fa-exclamation-triangle"></i> Please enter a message')
       })
     } else if (tweetLength > 140) {
       textAreaElement.addClass('invalid');
-      errorElement.slideDown( function() {
+      errorElement.slideDown( 'fast', function() {
         $(this).html('<i class="fas fa-exclamation-triangle"></i> Message too long')
       })
     } else {

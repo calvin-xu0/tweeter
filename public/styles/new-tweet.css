@@ -13,7 +13,8 @@
   padding: 0.2em 0.2em;
   border: 0;
   border-bottom: solid;
-  margin-bottom: 1em;
+  margin: 0.75em 0;
+  overflow-y: auto;
   resize: none;
   outline: 0;
 }
@@ -43,6 +44,6 @@
   align-items: center;
   color: red;
   height: 1em;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   font-size: 0.75em;
 }

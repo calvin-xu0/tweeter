@@ -1,5 +1,4 @@
 header.profile {
-  position: fixed;
   z-index: 1;
   height: 400px;
   width: 100%;
@@ -7,6 +6,20 @@ header.profile {
   background-color: orange;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  header.profile {
+    position: fixed;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  header.profile {
+    position: static;
+    justify-content: center;
+    width: 30%;
+  }
 }

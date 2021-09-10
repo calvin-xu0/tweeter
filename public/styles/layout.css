@@ -23,7 +23,6 @@ body {
 
 main {
   position: relative;
-  top: 400px;
   width: 70%;
   margin: auto;  
   padding: 1em 0;
@@ -33,3 +32,24 @@ main {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+@media only screen and (max-width: 1024px) {
+  main {
+    top: 400px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .desktop {
+    position: relative;
+    top: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .desktop > * {
+    margin: 0 1em;
+  }
+}
