@@ -8,7 +8,13 @@ const renderTweets = tweets => {
   for (const item of tweets) {
     $('#tweets').prepend(createTweetElement(item));
   }
-}
+};
+
+const loadTweets = function() {
+  $.get('/tweets', res => {
+    renderTweets(res);
+  });
+};
 
 const createTweetElement = data => {
   const tweetElement = $(`
@@ -36,39 +42,33 @@ const createTweetElement = data => {
       </div>
     </footer>
   </article>
-  `)
+  `);
   tweetElement.find('.tweet-msg').text(data.content.text);
   return tweetElement;
-}
+};
 
-$(document).ready(function() {
-
-  const loadTweets = function() {
-    $.get('/tweets', res => {
-      renderTweets(res);
-    })
-  }
+$(document).ready(() => {
   loadTweets();
 
   $('.new-tweet').find('form').submit(function(evt) {
     evt.preventDefault();
     const errorElement = $(this).next('.error');
-    errorElement.slideUp( 'fast', function() {
-      $(this).empty()
+    errorElement.slideUp('fast', function() {
+      $(this).empty();
     });
 
     const textAreaElement = $(this).find('#tweet-text');
     const tweetLength = textAreaElement.val().length;
     if (!tweetLength) {
       textAreaElement.addClass('invalid');
-      errorElement.slideDown( 'fast', function() {
-        $(this).html('<i class="fas fa-exclamation-triangle"></i> Please enter a message')
-      })
+      errorElement.slideDown('fast', function() {
+        $(this).html('<i class="fas fa-exclamation-triangle"></i> Please enter a message');
+      });
     } else if (tweetLength > 140) {
       textAreaElement.addClass('invalid');
-      errorElement.slideDown( 'fast', function() {
-        $(this).html('<i class="fas fa-exclamation-triangle"></i> Message too long')
-      })
+      errorElement.slideDown('fast', function() {
+        $(this).html('<i class="fas fa-exclamation-triangle"></i> Message too long');
+      });
     } else {
       textAreaElement.removeClass('invalid');
       $.post('/tweets', $(this).serialize()).then(() => {
@@ -78,5 +78,5 @@ $(document).ready(function() {
         loadTweets();
       });
     }
-  })
-})
+  });
+});

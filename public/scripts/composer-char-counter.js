@@ -7,5 +7,5 @@ $(document).ready(function() {
     } else {
       counter.css('color', 'red');
     }
-  })
+  });
 });
